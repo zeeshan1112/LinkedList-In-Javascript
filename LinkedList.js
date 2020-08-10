@@ -143,6 +143,19 @@ LinkedList.prototype.hasCycle = function() {
   }
   return false;
 }
+// Given a linked list, determine if it has a cycle in it. [with hashmap]
+LinkedList.prototype.hasCycle2 = function() {
+  let nodeMap = new Map();
+  let currentNode = this.head;
+  while(currentNode) {
+    if(nodeMap.get(currentNode)) {
+      return true;
+    }
+    nodeMap.set(currentNode, true);
+    currentNode = currentNode.next;
+  }
+  return false;
+}
 let ll = new LinkedList();
 ll.addAtFront(5);
 ll.addAtFront(3);
