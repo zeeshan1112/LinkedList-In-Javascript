@@ -156,6 +156,20 @@ LinkedList.prototype.hasCycle2 = function() {
   }
   return false;
 }
+
+// Reverse a LinkedList
+LinkedList.prototype.reverse = function() {
+  let currentNode = this.head;
+  let prev = null;
+  let temp = null;
+  while(currentNode) {
+    temp = currentNode.next;
+    currentNode.next = prev;
+    prev = currentNode;
+    currentNode = temp;
+  }
+  this.head = prev;
+}
 let ll = new LinkedList();
 ll.addAtFront(5);
 ll.addAtFront(3);
@@ -164,5 +178,6 @@ ll.addAfter(8, ll.head);
 ll.addAtEnd(12);
 ll.addAtEnd(8)
 //3 -> 8 -> 5 -> 12 -> 8
-ll.head.next.next.next = ll.head.next;
-console.log(ll.hasCycle())
+//ll.head.next.next.next = ll.head.next;
+ll.reverse();
+console.log(ll.head);
