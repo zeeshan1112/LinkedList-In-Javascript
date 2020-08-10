@@ -129,26 +129,27 @@ LinkedList.prototype.sortedMerge = function(l1, l2) {
   tail.next = l1 || l2;
   return dummyNode.next;
 }
-let l1 = new LinkedList();
-let l2 = new LinkedList();
-/*ll.addAtFront(5);
+
+// Given a linked list, determine if it has a cycle in it.
+LinkedList.prototype.hasCycle = function() {
+  let slow = this.head;
+  let fast = this.head;
+  while(fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if(slow === fast) {
+      return true;
+    }
+  }
+  return false;
+}
+let ll = new LinkedList();
+ll.addAtFront(5);
 ll.addAtFront(3);
 ll.addAfter(8, ll.head);
 //3 -> 8 -> 5
 ll.addAtEnd(12);
 ll.addAtEnd(8)
 //3 -> 8 -> 5 -> 12 -> 8
-
-//ll.deleteKey(8); // 3 -> 5 -> 12 -> 8
-ll.deleteAllKey(8); // 3 -> 5 -> 12*/
-
-l1.addAtEnd(1);
-l1.addAtEnd(2);
-l1.addAtEnd(4);
-l2.addAtEnd(1);
-l2.addAtEnd(3);
-l2.addAtEnd(4);
-
-let ll = new LinkedList();
-let newLl = ll.sortedMerge(l1.head, l2.head);
-console.log(newLl)
+ll.head.next.next.next = ll.head.next;
+console.log(ll.hasCycle())
